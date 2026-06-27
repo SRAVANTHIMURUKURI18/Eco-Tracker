@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { apiService } from '../api';
 
 export default function Profile() {
-  const { getAuthToken, currentUser } = useAuth();
+  const { getAuthToken, currentUser, updateTheme } = useAuth();
   
   // Profile settings state
   const [budget, setBudget] = useState(8.0);
@@ -51,13 +51,16 @@ export default function Profile() {
           setTheme(res.settings.theme || 'dark');
           setCountry(res.settings.country || 'in');
           setWeeklyGoal(res.settings.weekly_goal || 10.0);
+          if (updateTheme) {
+            updateTheme(res.settings.theme || 'dark');
+          }
         }
       } catch (err) {
         console.error('Failed to load settings', err);
       }
     }
     loadSettings();
-  }, [getAuthToken, currentUser]);
+  }, [getAuthToken, currentUser, updateTheme]);
 
   const handleSaveProfile = async (e) => {
     e.preventDefault();
@@ -87,6 +90,9 @@ export default function Profile() {
       const res = await apiService.updateSettings(payload, token);
       if (res.success) {
         setProfileMsg('Profile configuration updated successfully!');
+        if (updateTheme) {
+          updateTheme(theme);
+        }
       } else {
         setProfileErr(res.error || 'Failed to update profile.');
       }

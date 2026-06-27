@@ -62,6 +62,8 @@ def update_user_streak(uid, log_date_str):
         user_doc = user_ref.get()
         
         if not user_doc.exists:
+            user_info = getattr(request, 'user', None) or {}
+            display_name = user_info.get('name') or user_info.get('email') or 'Eco Track User'
             user_ref.set({
                 'uid': uid,
                 'budget': 8.0,
@@ -69,8 +71,8 @@ def update_user_streak(uid, log_date_str):
                 'streak': 1,
                 'last_logged_date': log_date_str,
                 'badges': [],
-                'patient_name': 'Eco Track User',
-                'displayName': 'Eco Track User',
+                'patient_name': display_name,
+                'displayName': display_name,
                 'country': 'in',
                 'weekly_goal': 10.0
             })
@@ -291,14 +293,16 @@ def manage_settings():
         
         if request.method == 'GET':
             if not user_doc.exists:
+                user_info = getattr(request, 'user', None) or {}
+                display_name = user_info.get('name') or user_info.get('email') or 'Eco Track User'
                 default_settings = {
                     'uid': uid,
                     'budget': 8.0,
                     'theme': 'dark',
                     'streak': 0,
                     'badges': [],
-                    'patient_name': 'Eco Track User',
-                    'displayName': 'Eco Track User',
+                    'patient_name': display_name,
+                    'displayName': display_name,
                     'country': 'in',
                     'weekly_goal': 10.0
                 }
@@ -380,14 +384,16 @@ def manage_badges():
         user_doc = user_ref.get()
         
         if not user_doc.exists:
+            user_info = getattr(request, 'user', None) or {}
+            display_name = user_info.get('name') or user_info.get('email') or 'Eco Track User'
             user_ref.set({
                 'uid': uid,
                 'budget': 8.0,
                 'theme': 'dark',
                 'streak': 0,
                 'badges': [],
-                'displayName': 'Eco Track User',
-                'patient_name': 'Eco Track User',
+                'displayName': display_name,
+                'patient_name': display_name,
                 'country': 'in',
                 'weekly_goal': 10.0
             })

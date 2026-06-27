@@ -7,6 +7,7 @@ import {
   updateProfile
 } from 'firebase/auth';
 import { auth } from '../firebase';
+import { apiService } from '../api';
 
 const AuthContext = createContext();
 
@@ -18,6 +19,18 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isDemoMode, setIsDemoMode] = useState(false);
+  const [theme, setThemeState] = useState('dark');
+
+  const updateTheme = (newTheme) => {
+    setThemeState(newTheme);
+    if (newTheme === 'light') {
+      document.body.classList.add('theme-light');
+      document.body.classList.remove('theme-dark');
+    } else {
+      document.body.classList.add('theme-dark');
+      document.body.classList.remove('theme-light');
+    }
+  };
 
   // Sign up function
   function signup(email, password, displayName) {
@@ -83,6 +96,30 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, [isDemoMode]);
 
+  useEffect(() => {
+    async function loadUserTheme() {
+      if (currentUser) {
+        try {
+          const token = await getAuthToken();
+          if (token) {
+            const res = await apiService.getSettings(token);
+            if (res.success && res.settings && res.settings.theme) {
+              updateTheme(res.settings.theme);
+            } else {
+              updateTheme('dark');
+            }
+          }
+        } catch (err) {
+          console.error('Failed to load user theme', err);
+          updateTheme('dark');
+        }
+      } else {
+        updateTheme('dark');
+      }
+    }
+    loadUserTheme();
+  }, [currentUser, isDemoMode]);
+
   const value = {
     currentUser,
     signup,
@@ -91,7 +128,9 @@ export function AuthProvider({ children }) {
     tryDemoMode,
     getAuthToken,
     isDemoMode,
-    loading
+    loading,
+    theme,
+    updateTheme
   };
 
   return (
