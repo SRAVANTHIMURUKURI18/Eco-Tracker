@@ -1,4 +1,12 @@
-# EcoTrack - Carbon Footprint Tracker
+# EcoTrack – Personal Carbon AI Footprint Tracker
+
+**Team Name**: EcoTrack – Personal Carbon AI Footprint Tracker  
+**Team Members**:
+- Regala Rakesh
+- Sri Dhruthi Mallela
+- P L P D Sravanthi Murukuri
+- Manikanta Cherukuri
+- Thokala Charan
 
 EcoTrack is a web-based personal carbon footprint tracking application designed to help users log daily habits, calculate carbon emissions, visualise their environmental impact, and receive AI-powered eco-friendly suggestions.
 
@@ -59,3 +67,42 @@ After logging travel, food, and energy habits, the user navigates to the Suggest
 
 ### Scenario 4: Reviewing Footprint History
 The user opens the History page to review their carbon footprint trends. The dashboard renders a 30-day line chart with a budget reference line, a 14-day stacked bar breakdown by category, and a colour-coded heatmap calendar. Summary statistics including 7-day average, best day, worst day, and monthly total are displayed above the charts.
+
+## Repository Structure & Phase Deliverables
+
+This repository is formatted according to the **AI Specialist Track Project Template** evaluation standard. All project phases and phase-specific documentation templates are organized into their respective folders:
+
+- **`1. Brainstorming & Ideation/`**
+  - `Brainstorming & Idea Prioritization.pdf`
+  - `Define Problem Statements.pdf`
+  - `Empathy Map.pdf`
+- **`2. Requirement Analysis/`**
+  - `Customer Journey Map.pdf`
+  - `Data Flow Diagram.pdf`
+  - `Solution Requirements.pdf`
+  - `Technology Stack.pdf`
+- **`3. Project Design Phase/`**
+  - `Problem-Solution Fit.pdf`
+  - `SL Project Proposal (Proposed Solution) template.pdf`
+  - `Solution Architecture.pdf`
+- **`4. Project Planning Phase/`**
+  - `Project Planning Template.pdf`
+- **`5. Project Development Phase/`**
+  - `AI Prompt Logs.pdf`
+  - `AI Tools Used.pdf`
+  - `Code-Layout, Readability and Reusability.pdf`
+  - `Functional Features included in the solution.pdf`
+- **`6. Performance Testing/`**
+  - `Performance Testing Report.pdf`
+- **`7. Documentation & Demo/`**
+  - `Project Executable Files & Execution Guide.pdf`
+  - `Sample Project Documentation.pdf`
+- **`8. Project Demonstration/`**
+  - `Communication Plan Template.pdf`
+  - `Demonstration of Proposed Features.pdf`
+  - `Project Demo Planning Template.pdf`
+  - `Scalability & Future Plan.pdf`
+  - `Team Involvement in Demonstration.pdf`
+- **`backend/`**: Flask Python Backend API, Firebase Integration, and Groq AI Service
+- **`frontend/`**: React + Tailwind CSS Web Application Interface
+
